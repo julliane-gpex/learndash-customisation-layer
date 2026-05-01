@@ -1,21 +1,69 @@
 # LearnDash Customisation Layer
 
-A structured internal reference for LearnDash customisation approaches at GPEx.
+> Internal development reference for LearnDash customisation at GPEx.
 
-This repository documents implementation patterns, experiments, and scalable methods for extending LearnDash using WordPress hooks and modular configuration files, without modifying LearnDash core plugin files.
+A structured approach for customising LearnDash UI and behaviour without modifying core plugin files.
 
-## Purpose
+This repository defines a reusable and scalable configuration layer using WordPress hooks and modular PHP files, allowing safe and maintainable extensions across projects.
 
-The purpose of this repository is to document reusable LearnDash customisation strategies that can support maintainable development across projects.
+---
 
-## Focus Areas
+## 🎯 Overview
 
-- LearnDash UI customisation patterns
-- WordPress hook-based modifications
-- Behaviour and layout adjustments
-- Modular configuration structure
-- Safe extension methods without editing core plugin files
+This approach isolates all LearnDash customisations within the theme, ensuring:
 
-## Notes
+- ✔ Compatibility with LearnDash updates  
+- ✔ Separation of concerns (UI vs behaviour)  
+- ✔ Reusability across multiple projects  
 
-This repository is intended for internal development reference and experimentation.
+---
+
+## 📁 Directory Structure
+public/wp-content/themes/hello-elementor/custom-configurations/learndash/
+├── ui-hooks.php
+├── behaviour.php
+
+
+---
+
+## 📦 File Responsibilities
+
+### 🧩 ui-hooks.php
+
+Handles UI-related customisations using WordPress and LearnDash hooks.
+
+Used for:
+- Injecting UI elements  
+- Modifying existing components  
+- Removing default elements  
+- Applying styling and frontend adjustments (via injected CSS/JS when needed)  
+
+---
+
+### 🧠 behaviour.php
+
+Handles functional logic and behaviour customisation.
+
+Includes:
+- SCORM handling  
+- Completion flow control  
+- Mark Complete logic  
+- Conditional behaviour overrides  
+
+---
+
+## ⚙️ How It Works
+
+All custom files are loaded through the theme’s `functions.php`:
+
+```php
+// Parent Theme
+require_once get_template_directory() . '/custom-configurations/learndash/ui-hooks.php';
+require_once get_template_directory() . '/custom-configurations/learndash/behaviour.php';
+
+// Child Theme
+require_once get_stylesheet_directory() . '/custom-configurations/learndash/ui-hooks.php';
+require_once get_stylesheet_directory() . '/custom-configurations/learndash/behaviour.php';
+
+ui-hooks.php   → UI modifications (hooks, layout, visual adjustments)
+behaviour.php  → logic and behaviour control
