@@ -22,6 +22,7 @@ This approach isolates all LearnDash customisations within the theme, ensuring:
 public/wp-content/themes/hello-elementor/custom-configurations/learndash/
 
 ├── ui-hooks.php
+
 ├── behaviour.php
 
 
