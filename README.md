@@ -20,6 +20,7 @@ This approach isolates all LearnDash customisations within the theme, ensuring:
 
 ## 📁 Directory Structure
 public/wp-content/themes/hello-elementor/custom-configurations/learndash/
+
 ├── ui-hooks.php
 ├── behaviour.php
 
